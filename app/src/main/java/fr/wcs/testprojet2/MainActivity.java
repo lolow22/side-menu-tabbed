@@ -55,9 +55,13 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_autorenew);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_archive);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_rss);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_supervisor);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
     }
 
     @Override
@@ -131,8 +135,8 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 5;
         }
     }
     public static class PlaceholderFragment extends Fragment {
@@ -160,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            if (getArguments().getInt(ARG_SECTION_NUMBER) == 1){
+            if (getArguments().getInt(ARG_SECTION_NUMBER) ==1){
                 View rootView = inflater.inflate(R.layout.fragment_tabbed,container,false);
                 return rootView;
             }
@@ -172,6 +176,11 @@ public class MainActivity extends AppCompatActivity
                 View rootView = inflater.inflate(R.layout.fragment_three,container,false);
                 return rootView;
             }
+            else if (getArguments().getInt(ARG_SECTION_NUMBER)== 4) {
+                View rootView = inflater.inflate(R.layout.fragment_four, container, false);
+                return rootView;
+            }
+
             return null;
         }
     }
